@@ -85,6 +85,11 @@ const generateNote = async (transcript: string) => {
 const saveNotes = async () => {
 	Highlight.appStorage.set("notes", JSON.stringify(notes))
 }
+
+const deleteNote = (id: string) => {
+	notes = notes.filter((note) => note.id !== id)
+	saveNotes()
+}
 </script>
 
 <!-- Navbar -->
@@ -121,7 +126,7 @@ const saveNotes = async () => {
 			</Card.Content>
 		</Card.Root>
 	{:else}
-		{#each notes as { title, content }}
+		{#each notes as { id, title, content }}
 			<Card.Root>
 				<Card.Header>
 					<Card.Title class="text-lg font-bold">{title}</Card.Title>
@@ -129,6 +134,9 @@ const saveNotes = async () => {
 				<Card.Content class="max-h-96 overflow-y-auto">
 					{@html content}
 				</Card.Content>
+				<Card.Footer>
+					<Button variant="destructive" on:click={() => deleteNote(id)}>Delete</Button>
+				</Card.Footer>
 			</Card.Root>
 		{/each}
 	{/if}
