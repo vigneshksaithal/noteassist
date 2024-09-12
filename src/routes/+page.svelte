@@ -93,7 +93,7 @@ const deleteNote = (id: string) => {
 </script>
 
 <!-- Navbar -->
-<div class="flex justify-between items-center py-2">
+<div class="flex justify-between items-center pb-4">
 	<h1 class="text-2xl font-bold">NoteAssist</h1>
 	{#if !isRecording}
 		<Button on:click={startRecording}>
