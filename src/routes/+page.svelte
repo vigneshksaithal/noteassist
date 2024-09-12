@@ -4,27 +4,12 @@ import * as Card from "$lib/components/ui/card"
 import Highlight from "@highlight-ai/app-runtime"
 import { onMount } from "svelte"
 
-let currentNote: Note = {
-	id: "",
-	title: "",
-	content: "",
-	createdAt: new Date(),
-}
 let currentTranscript = ""
 let notes: Note[] = []
 let isRecording = false
 let audioInterval: number | null = null
 
 onMount(async () => {
-	console.log("ON MOUNT")
-	Highlight.appStorage.delete("notes")
-
-	currentNote = {
-		id: "",
-		title: "",
-		content: "",
-		createdAt: new Date(),
-	}
 	await Highlight.appStorage.whenHydrated()
 	const storedNotes = Highlight.appStorage.get("notes")
 	if (storedNotes) {
@@ -53,16 +38,14 @@ const stopRecording = async () => {
 	}
 	if (currentTranscript.trim()) {
 		const note = await generateNote(currentTranscript)
-		notes = [
-			...notes,
-			{
-				id: "",
-				title: note.title,
-				content: note.content,
-				createdAt: new Date(),
-			},
-		]
-		Highlight.appStorage.set("notes", JSON.stringify(notes))
+		const newNote: Note = {
+			id: crypto.randomUUID(),
+			title: note.title,
+			content: note.content,
+			createdAt: new Date(),
+		}
+		notes = [...notes, newNote]
+		await saveNotes()
 		currentTranscript = ""
 	}
 }
@@ -97,40 +80,47 @@ const generateNote = async (transcript: string) => {
 	const parsedOutput = JSON.parse(jsonOutput)
 	return { title: parsedOutput.title, content: parsedOutput.content }
 }
+
+const saveNotes = async () => {
+	Highlight.appStorage.set("notes", JSON.stringify(notes))
+}
 </script>
 
 <!-- Navbar -->
-<div class="flex justify-between items-center">
+<div class="flex justify-between items-center py-2">
 	<h1 class="text-2xl font-bold">NoteAssist</h1>
-{#if !isRecording}
-	<Button
-		on:click={() => {
-			currentTranscript = "";
-			currentNote = {
-				id: "",
-				title: "",
-				content: "",
-				createdAt: new Date(),
-			};
-			startRecording();
-		}}
-	>
-		Start
-	</Button>
-{:else}
-	<Button on:click={stopRecording}>Stop</Button>
-{/if}
+	{#if !isRecording}
+		<Button on:click={startRecording}>
+			Start
+		</Button>
+	{:else}
+		<Button on:click={stopRecording}>Stop</Button>
+	{/if}
 </div>
 
 <section class="grid grid-cols-2 gap-4">
-	{#each notes as { title, content }}
-		<Card.Root>
+	{#if notes.length === 0}
+		<Card.Root class="mx-auto">
 			<Card.Header>
-				<Card.Title class="text-lg font-bold">{title}</Card.Title>
+				<Card.Title class="text-lg font-bold">How to use NoteAssist</Card.Title>
 			</Card.Header>
 			<Card.Content>
-				{@html content}
+				<p>1. Click the "Start" button to begin recording.</p>
+				<p>2. Speak clearly into your microphone.</p>
+				<p>3. Click "Stop" when you're done.</p>
+				<p>4. Your note will be automatically generated and saved.</p>
 			</Card.Content>
 		</Card.Root>
-	{/each}
+	{:else}
+		{#each notes as { title, content }}
+			<Card.Root>
+				<Card.Header>
+					<Card.Title class="text-lg font-bold">{title}</Card.Title>
+				</Card.Header>
+				<Card.Content class="max-h-96 overflow-y-auto">
+					{@html content}
+				</Card.Content>
+			</Card.Root>
+		{/each}
+	{/if}
 </section>
