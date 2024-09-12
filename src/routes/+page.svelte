@@ -63,13 +63,13 @@ const stopRecording = async () => {
 
 const generateNote = async (transcript: string) => {
 	const SYSTEMPROMPT = `
-    You are a helpful assistant who needs to generate notes for given text.
-    Remove unrelated content like sponsorhips, ads, or anything that is not related to the main topic.
-    The notes should be in markdown format.
-    Generate only the notes, dont add "I am a AI assistant" or anything like that.
-    Don't give any other text than the notes.
-    Just give the notes in the markdown format thats it.
-    `
+			You are a helpful assistant who needs to generate notes for given text.
+			Remove unrelated content like sponsorhips, ads, or anything that is not related to the main topic.
+			The notes should be in markdown format.
+			Generate only the notes, dont add "I am a AI assistant" or anything like that.
+			Don't give any other text than the notes.
+			Just give the notes in the markdown format thats it.
+		`
 
 	const MESSAGES = [
 		{
@@ -94,30 +94,34 @@ const generateNote = async (transcript: string) => {
 }
 </script>
 
-<h1 class="text-2xl font-bold">Notes</h1>
+<h1 class="text-2xl font-bold">NoteAssist</h1>
 {#if !isRecording}
-	<Button on:click={() => {
-		currentTranscript = ""
-		currentNote = {
-			id: "",
-			title: "",
-			content: "",
-			createdAt: new Date(),
-		}
-		startRecording()
-	}}>Start Noting...</Button>
+	<Button
+		on:click={() => {
+			currentTranscript = "";
+			currentNote = {
+				id: "",
+				title: "",
+				content: "",
+				createdAt: new Date(),
+			};
+			startRecording();
+		}}
+	>
+		Start Noting...
+	</Button>
 {:else}
 	<Button on:click={stopRecording}>Stop noting</Button>
 {/if}
 
 <section class="grid grid-cols-2 gap-4">
 	{#each notes as { title, content }}
-	<Card.Root>
-		<Card.Header>
-			<Card.Title class="text-lg font-bold">{title}</Card.Title>
-		</Card.Header>
-		<Card.Content>
-			{@html content}
+		<Card.Root>
+			<Card.Header>
+				<Card.Title class="text-lg font-bold">{title}</Card.Title>
+			</Card.Header>
+			<Card.Content>
+				{@html content}
 			</Card.Content>
 		</Card.Root>
 	{/each}
