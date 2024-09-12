@@ -17,6 +17,7 @@ let audioInterval: number | null = null
 
 onMount(async () => {
 	console.log("ON MOUNT")
+	Highlight.appStorage.delete("notes")
 
 	currentNote = {
 		id: "",
@@ -98,7 +99,9 @@ const generateNote = async (transcript: string) => {
 }
 </script>
 
-<h1 class="text-2xl font-bold">NoteAssist</h1>
+<!-- Navbar -->
+<div class="flex justify-between items-center">
+	<h1 class="text-2xl font-bold">NoteAssist</h1>
 {#if !isRecording}
 	<Button
 		on:click={() => {
@@ -112,11 +115,12 @@ const generateNote = async (transcript: string) => {
 			startRecording();
 		}}
 	>
-		Start Noting...
+		Start
 	</Button>
 {:else}
-	<Button on:click={stopRecording}>Stop noting</Button>
+	<Button on:click={stopRecording}>Stop</Button>
 {/if}
+</div>
 
 <section class="grid grid-cols-2 gap-4">
 	{#each notes as { title, content }}
