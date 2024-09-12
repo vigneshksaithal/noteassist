@@ -1,4 +1,6 @@
 <script lang="ts">
+import { Button } from "$lib/components/ui/button"
+import * as Card from "$lib/components/ui/card"
 import Highlight from "@highlight-ai/app-runtime"
 import { onMount } from "svelte"
 
@@ -92,29 +94,31 @@ const generateNote = async (transcript: string) => {
 }
 </script>
 
-<h1>Notes</h1>
+<h1 class="text-2xl font-bold">Notes</h1>
 {#if !isRecording}
-	<button
-		on:click={() => {
-			currentTranscript = ""
-			currentNote = {
-				id: "",
-				title: "",
-				content: "",
-				createdAt: new Date(),
-			}
-			startRecording()
-		}}>Start Noting...</button
-	>
+	<Button on:click={() => {
+		currentTranscript = ""
+		currentNote = {
+			id: "",
+			title: "",
+			content: "",
+			createdAt: new Date(),
+		}
+		startRecording()
+	}}>Start Noting...</Button>
 {:else}
 	<button on:click={stopRecording}>Stop noting</button>
 {/if}
 
-<section class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+<section class="grid grid-cols-2 gap-4">
 	{#each notes as { title, content }}
-	<article style="max-height: 400px; overflow-y: auto;">
-			<h3>{title}</h3>
+	<Card.Root>
+		<Card.Header>
+			<Card.Title class="text-lg font-bold">{title}</Card.Title>
+		</Card.Header>
+		<Card.Content>
 			{@html content}
-		</article>
+			</Card.Content>
+		</Card.Root>
 	{/each}
 </section>
