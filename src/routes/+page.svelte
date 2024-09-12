@@ -94,9 +94,17 @@ const saveNotes = async () => {
 			Start
 		</Button>
 	{:else}
-		<Button on:click={stopRecording}>Stop</Button>
+		<Button variant="destructive" on:click={stopRecording}>Stop</Button>
 	{/if}
 </div>
+
+{#if isRecording}
+	<div class="flex justify-center items-center my-4 space-x-2">
+		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+	</div>
+{/if}
 
 <section class="grid grid-cols-2 gap-4">
 	{#if notes.length === 0}
