@@ -54,7 +54,12 @@ const stopRecording = async () => {
 		const note = await generateNote(currentTranscript)
 		notes = [
 			...notes,
-			{ id: "", title: "", content: note, createdAt: new Date() },
+			{
+				id: "",
+				title: note.title,
+				content: note.content,
+				createdAt: new Date(),
+			},
 		]
 		Highlight.appStorage.set("notes", JSON.stringify(notes))
 		currentTranscript = ""
@@ -64,11 +69,9 @@ const stopRecording = async () => {
 const generateNote = async (transcript: string) => {
 	const SYSTEMPROMPT = `
 			You are a helpful assistant who needs to generate notes for given text.
-			Remove unrelated content like sponsorhips, ads, or anything that is not related to the main topic.
-			The notes should be in markdown format.
-			Generate only the notes, dont add "I am a AI assistant" or anything like that.
-			Don't give any other text than the notes.
-			Just give the notes in the markdown format thats it.
+			Remove unrelated content like sponsorships, ads, or anything that is not related to the main topic.
+			Generate a JSON object with the format {title: string, content: string}.
+			Do not include any additional text or markdown formatting.
 		`
 
 	const MESSAGES = [
@@ -84,13 +87,14 @@ const generateNote = async (transcript: string) => {
 
 	const textPrediction = Highlight.inference.getTextPrediction(MESSAGES)
 
-	let note = ""
+	let jsonOutput = ""
 	for await (const chunk of textPrediction) {
 		console.log("Incoming chunk:", chunk)
-		note += chunk
+		jsonOutput += chunk
 	}
 
-	return note
+	const parsedOutput = JSON.parse(jsonOutput)
+	return { title: parsedOutput.title, content: parsedOutput.content }
 }
 </script>
 
