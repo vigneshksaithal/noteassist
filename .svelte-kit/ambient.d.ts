@@ -37,6 +37,7 @@ declare module '$env/static/private' {
 	export const TMPDIR: string;
 	export const HOMEBREW_REPOSITORY: string;
 	export const TERM_PROGRAM_VERSION: string;
+	export const npm_package_dependencies_tailwind_variants: string;
 	export const npm_package_scripts_dev: string;
 	export const MallocNanoZone: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
@@ -55,11 +56,13 @@ declare module '$env/static/private' {
 	export const npm_execpath: string;
 	export const npm_package_devDependencies_svelte: string;
 	export const npm_config_frozen_lockfile: string;
+	export const npm_package_dependencies_tailwind_merge: string;
 	export const PATH: string;
 	export const npm_config_engine_strict: string;
 	export const __CFBundleIdentifier: string;
 	export const USER_ZDOTDIR: string;
 	export const PWD: string;
+	export const npm_package_devDependencies_tailwindcss: string;
 	export const npm_command: string;
 	export const npm_package_scripts_preview: string;
 	export const npm_lifecycle_event: string;
@@ -75,6 +78,7 @@ declare module '$env/static/private' {
 	export const npm_package_version: string;
 	export const npm_package_devDependencies__sveltejs_adapter_auto: string;
 	export const VSCODE_INJECTION: string;
+	export const npm_package_devDependencies_autoprefixer: string;
 	export const npm_package_devDependencies_svelte_check: string;
 	export const HOME: string;
 	export const SHLVL: string;
@@ -89,6 +93,7 @@ declare module '$env/static/private' {
 	export const HOMEBREW_CELLAR: string;
 	export const GIT_ASKPASS: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
+	export const npm_package_dependencies_clsx: string;
 	export const npm_package_devDependencies__biomejs_biome: string;
 	export const npm_package_scripts_check: string;
 	export const COLORTERM: string;
@@ -136,6 +141,7 @@ declare module '$env/dynamic/private' {
 		TMPDIR: string;
 		HOMEBREW_REPOSITORY: string;
 		TERM_PROGRAM_VERSION: string;
+		npm_package_dependencies_tailwind_variants: string;
 		npm_package_scripts_dev: string;
 		MallocNanoZone: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
@@ -154,11 +160,13 @@ declare module '$env/dynamic/private' {
 		npm_execpath: string;
 		npm_package_devDependencies_svelte: string;
 		npm_config_frozen_lockfile: string;
+		npm_package_dependencies_tailwind_merge: string;
 		PATH: string;
 		npm_config_engine_strict: string;
 		__CFBundleIdentifier: string;
 		USER_ZDOTDIR: string;
 		PWD: string;
+		npm_package_devDependencies_tailwindcss: string;
 		npm_command: string;
 		npm_package_scripts_preview: string;
 		npm_lifecycle_event: string;
@@ -174,6 +182,7 @@ declare module '$env/dynamic/private' {
 		npm_package_version: string;
 		npm_package_devDependencies__sveltejs_adapter_auto: string;
 		VSCODE_INJECTION: string;
+		npm_package_devDependencies_autoprefixer: string;
 		npm_package_devDependencies_svelte_check: string;
 		HOME: string;
 		SHLVL: string;
@@ -188,6 +197,7 @@ declare module '$env/dynamic/private' {
 		HOMEBREW_CELLAR: string;
 		GIT_ASKPASS: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
+		npm_package_dependencies_clsx: string;
 		npm_package_devDependencies__biomejs_biome: string;
 		npm_package_scripts_check: string;
 		COLORTERM: string;
