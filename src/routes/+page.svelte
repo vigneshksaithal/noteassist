@@ -107,7 +107,7 @@ const generateNote = async (transcript: string) => {
 		startRecording()
 	}}>Start Noting...</Button>
 {:else}
-	<button on:click={stopRecording}>Stop noting</button>
+	<Button on:click={stopRecording}>Stop noting</Button>
 {/if}
 
 <section class="grid grid-cols-2 gap-4">
