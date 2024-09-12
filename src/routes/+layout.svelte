@@ -1,9 +1,9 @@
-<script lang="ts">
-import MetaTags from "$lib/MetaTags.svelte"
+<script>import MetaTags from "$lib/MetaTags.svelte"
+import "../app.css"
 </script>
 
-<MetaTags />
+<MetaTags></MetaTags>
 
 <main class="container" style="padding: 1em;">
-	<slot />
+	<slot></slot>
 </main>

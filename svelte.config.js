@@ -6,7 +6,10 @@ const config = {
 
 	kit: {
 		adapter: adapter()
-	}
+	},
+	alias: {
+		"@/*": "./src/lib/*",
+	},
 }
 
 export default config
