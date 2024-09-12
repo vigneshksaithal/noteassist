@@ -134,7 +134,7 @@ const deleteNote = (id: string) => {
 				<Card.Content class="max-h-96 overflow-y-auto">
 					{@html content}
 				</Card.Content>
-				<Card.Footer>
+				<Card.Footer class="flex justify-end">
 					<Button variant="destructive" on:click={() => deleteNote(id)}>Delete</Button>
 				</Card.Footer>
 			</Card.Root>
