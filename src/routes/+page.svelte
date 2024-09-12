@@ -77,6 +77,7 @@ const generateNote = async (transcript: string) => {
 		jsonOutput += chunk
 	}
 
+	jsonOutput = jsonOutput.replace(/^```|```$/g, "")
 	const parsedOutput = JSON.parse(jsonOutput)
 	return { title: parsedOutput.title, content: parsedOutput.content }
 }
