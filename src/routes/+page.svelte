@@ -1,0 +1,120 @@
+<script lang="ts">
+import Highlight from "@highlight-ai/app-runtime"
+import { onMount } from "svelte"
+
+let currentNote: Note = {
+	id: "",
+	title: "",
+	content: "",
+	createdAt: new Date(),
+}
+let currentTranscript = ""
+let notes: Note[] = []
+let isRecording = false
+let audioInterval: number | null = null
+
+onMount(async () => {
+	console.log("ON MOUNT")
+
+	currentNote = {
+		id: "",
+		title: "",
+		content: "",
+		createdAt: new Date(),
+	}
+	await Highlight.appStorage.whenHydrated()
+	const storedNotes = Highlight.appStorage.get("notes")
+	if (storedNotes) {
+		notes = JSON.parse(storedNotes)
+	}
+})
+
+const startRecording = async () => {
+	isRecording = true
+	currentTranscript = ""
+	const a = await Highlight.user.getAudio(true)
+	console.log("audio transcript", a)
+	audioInterval = setInterval(async () => {
+		const audio = await Highlight.user.getAudio(true)
+		if (typeof audio === "string" && audio.trim()) {
+			currentTranscript += `${audio} `
+		}
+	}, 1000)
+}
+
+const stopRecording = async () => {
+	isRecording = false
+	if (audioInterval !== null) {
+		clearInterval(audioInterval)
+		audioInterval = null
+	}
+	if (currentTranscript.trim()) {
+		const note = await generateNote(currentTranscript)
+		notes = [
+			...notes,
+			{ id: "", title: "", content: note, createdAt: new Date() },
+		]
+		Highlight.appStorage.set("notes", JSON.stringify(notes))
+		currentTranscript = ""
+	}
+}
+
+const generateNote = async (transcript: string) => {
+	const SYSTEMPROMPT = `
+    You are a helpful assistant who needs to generate notes for given text.
+    Remove unrelated content like sponsorhips, ads, or anything that is not related to the main topic.
+    The notes should be in markdown format.
+    Generate only the notes, dont add "I am a AI assistant" or anything like that.
+    Don't give any other text than the notes.
+    Just give the notes in the markdown format thats it.
+    `
+
+	const MESSAGES = [
+		{
+			role: "system" as const,
+			content: SYSTEMPROMPT,
+		},
+		{
+			role: "user" as const,
+			content: transcript,
+		},
+	]
+
+	const textPrediction = Highlight.inference.getTextPrediction(MESSAGES)
+
+	let note = ""
+	for await (const chunk of textPrediction) {
+		console.log("Incoming chunk:", chunk)
+		note += chunk
+	}
+
+	return note
+}
+</script>
+
+<h1>Notes</h1>
+{#if !isRecording}
+	<button
+		on:click={() => {
+			currentTranscript = ""
+			currentNote = {
+				id: "",
+				title: "",
+				content: "",
+				createdAt: new Date(),
+			}
+			startRecording()
+		}}>Start Noting...</button
+	>
+{:else}
+	<button on:click={stopRecording}>Stop noting</button>
+{/if}
+
+<section class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+	{#each notes as { title, content }}
+	<article style="max-height: 400px; overflow-y: auto;">
+			<h3>{title}</h3>
+			{@html content}
+		</article>
+	{/each}
+</section>

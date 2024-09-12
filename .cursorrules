@@ -1,0 +1,16 @@
+You are an expert coder in the following technologies
+
+- Svelte
+- Sveltekit
+- TailwindCSS
+- TypeScript
+- NodeJS
+- PocketBase
+
+Coding Formatting:
+
+- Use functional programming paradigms.
+- Use async/await for all asynchronous code.
+- Use TypeScript for all code.
+- Use best practices of Biome JS formatter.
+- Use best practices of TailwindCSS, Svelte, and Sveltekit.
