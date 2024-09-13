@@ -20,8 +20,6 @@ onMount(async () => {
 const startRecording = async () => {
 	isRecording = true
 	currentTranscript = ""
-	const initialAudio = await Highlight.user.getAudio(true)
-	console.log("Initial audio transcript:", initialAudio)
 	audioInterval = setInterval(async () => {
 		const audio = await Highlight.user.getAudio(true)
 		if (typeof audio === "string" && audio.trim()) {
@@ -38,13 +36,10 @@ const stopRecording = async () => {
 	}
 	if (currentTranscript.trim()) {
 		const note = await generateNote(currentTranscript)
-		const newNote: Note = {
-			id: crypto.randomUUID(),
-			title: note.title,
-			content: note.content,
-			createdAt: new Date(),
-		}
-		notes = [...notes, newNote]
+		notes = [
+			...notes,
+			{ id: crypto.randomUUID(), ...note, createdAt: new Date() },
+		]
 		await saveNotes()
 		currentTranscript = ""
 	}
@@ -52,34 +47,26 @@ const stopRecording = async () => {
 
 const generateNote = async (transcript: string) => {
 	const SYSTEMPROMPT = `
-			You are a helpful assistant who needs to generate notes for given text.
-			Remove unrelated content like sponsorships, ads, or anything that is not related to the main topic.
-			Generate a JSON object with the format {title: string, content: string}.
-			Do not include any additional text or markdown formatting.
-		`
+		You are a helpful assistant who needs to generate notes for given text.
+		Remove unrelated content like sponsorships, ads, or anything that is not related to the main topic.
+		Generate a JSON object with the format {title: string, content: string}.
+		Do not include any additional text or markdown formatting.
+	`
 
 	const MESSAGES = [
-		{
-			role: "system" as const,
-			content: SYSTEMPROMPT,
-		},
-		{
-			role: "user" as const,
-			content: transcript,
-		},
+		{ role: "system" as const, content: SYSTEMPROMPT },
+		{ role: "user" as const, content: transcript },
 	]
 
 	const textPrediction = Highlight.inference.getTextPrediction(MESSAGES)
 
 	let jsonOutput = ""
 	for await (const chunk of textPrediction) {
-		console.log("Incoming chunk:", chunk)
 		jsonOutput += chunk
 	}
 
-	jsonOutput = jsonOutput.replace(/^```|```$/g, "")
-	const parsedOutput = JSON.parse(jsonOutput)
-	return { title: parsedOutput.title, content: parsedOutput.content }
+	const parsedOutput = JSON.parse(jsonOutput.replace(/^```|```$/g, ""))
+	return parsedOutput
 }
 
 const saveNotes = async () => {
@@ -95,25 +82,23 @@ const deleteNote = (id: string) => {
 <!-- Navbar -->
 <div class="flex justify-between items-center pb-4">
 	<h1 class="text-2xl font-bold">NoteAssist</h1>
-	{#if !isRecording}
-		<Button on:click={startRecording}>
-			Start
-		</Button>
-	{:else}
-		<Button variant="destructive" on:click={stopRecording}>Stop</Button>
-	{/if}
+	<Button on:click={isRecording ? stopRecording : startRecording} variant={isRecording ? "destructive" : "default"}>
+		{isRecording ? "Stop" : "Start"}
+	</Button>
 </div>
 
+<!-- Recording indicator -->
 {#if isRecording}
 	<div class="flex justify-center items-center my-4 space-x-2">
 		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
-		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
 	</div>
 {/if}
 
 <section class="grid grid-cols-2 gap-4">
 	{#if notes.length === 0}
+		<!-- How to use NoteAssist -->
 		<Card.Root class="mx-auto">
 			<Card.Header>
 				<Card.Title class="text-lg font-bold">How to use NoteAssist</Card.Title>
