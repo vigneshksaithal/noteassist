@@ -111,6 +111,7 @@ const deleteNote = (id: string): void => {
 			</Card.Content>
 		</Card.Root>
 	{:else}
+		<!-- Notes -->
 		{#each notes as { id, title, content }}
 			<Card.Root>
 				<Card.Header>
