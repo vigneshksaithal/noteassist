@@ -42,8 +42,8 @@ const stopRecording = async (): Promise<void> => {
 			isGenerating = true
 			const note = await generateNote(currentTranscript)
 			notes = [
-				...notes,
 				{ ...note, id: crypto.randomUUID(), createdAt: new Date() },
+				...notes,
 			]
 			await saveNotes()
 			currentTranscript = ""
@@ -105,16 +105,18 @@ const deleteNote = (id: string): void => {
 
 <!-- Recording indicator -->
 {#if isRecording}
-	<div class="flex justify-center items-center my-4 space-x-2">
-		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-		<div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+	<div class="flex items-center space-x-2 my-4 p-2 bg-red-100 border border-red-400 rounded">
+		<div class="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
+		<span class="text-red-500 font-semibold">Recording in progress...</span>
 	</div>
 {/if}
 
 <!-- Generating notes indicator -->
 {#if isGenerating}
-	<div class="text-center my-4 text-gray-600">Generating notes...</div>
+	<div class="flex items-center space-x-2 my-4 p-2 bg-yellow-100 border border-yellow-400 rounded">
+		<div class="w-4 h-4 bg-yellow-500 rounded-full animate-spin"></div>
+		<span class="text-yellow-500 font-semibold">Generating notes...</span>
+	</div>
 {/if}
 
 <section class="grid grid-cols-2 gap-4">
