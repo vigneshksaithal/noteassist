@@ -17,7 +17,7 @@ onMount(async () => {
 	}
 })
 
-const startRecording = async () => {
+const startRecording = async (): Promise<void> => {
 	isRecording = true
 	currentTranscript = ""
 	audioInterval = setInterval(async () => {
@@ -28,7 +28,7 @@ const startRecording = async () => {
 	}, 1000) as unknown as number
 }
 
-const stopRecording = async () => {
+const stopRecording = async (): Promise<void> => {
 	isRecording = false
 	if (audioInterval !== null) {
 		clearInterval(audioInterval)
@@ -38,14 +38,14 @@ const stopRecording = async () => {
 		const note = await generateNote(currentTranscript)
 		notes = [
 			...notes,
-			{ id: crypto.randomUUID(), ...note, createdAt: new Date() },
+			{ ...note, id: crypto.randomUUID(), createdAt: new Date() },
 		]
 		await saveNotes()
 		currentTranscript = ""
 	}
 }
 
-const generateNote = async (transcript: string) => {
+const generateNote = async (transcript: string): Promise<Note> => {
 	const SYSTEMPROMPT = `
 		You are a helpful assistant who needs to generate notes for given text.
 		Remove unrelated content like sponsorships, ads, or anything that is not related to the main topic.
@@ -69,11 +69,11 @@ const generateNote = async (transcript: string) => {
 	return parsedOutput
 }
 
-const saveNotes = async () => {
+const saveNotes = async (): Promise<void> => {
 	Highlight.appStorage.set("notes", JSON.stringify(notes))
 }
 
-const deleteNote = (id: string) => {
+const deleteNote = (id: string): void => {
 	notes = notes.filter((note) => note.id !== id)
 	saveNotes()
 }
