@@ -7,7 +7,8 @@ import { onMount } from "svelte"
 let currentTranscript = ""
 let notes: Note[] = []
 let isRecording = false
-let audioInterval: number | null = null
+let isGenerating = false
+let audioInterval: ReturnType<typeof setInterval> | null = null
 
 onMount(async () => {
 	await Highlight.appStorage.whenHydrated()
@@ -17,15 +18,17 @@ onMount(async () => {
 	}
 })
 
-const startRecording = async (): Promise<void> => {
+const startRecording = async () => {
 	isRecording = true
 	currentTranscript = ""
+	const a = await Highlight.user.getAudio(true)
+	console.log("audio transcript", a)
 	audioInterval = setInterval(async () => {
 		const audio = await Highlight.user.getAudio(true)
 		if (typeof audio === "string" && audio.trim()) {
 			currentTranscript += `${audio} `
 		}
-	}, 1000) as unknown as number
+	}, 1000)
 }
 
 const stopRecording = async (): Promise<void> => {
@@ -35,13 +38,20 @@ const stopRecording = async (): Promise<void> => {
 		audioInterval = null
 	}
 	if (currentTranscript.trim()) {
-		const note = await generateNote(currentTranscript)
-		notes = [
-			...notes,
-			{ ...note, id: crypto.randomUUID(), createdAt: new Date() },
-		]
-		await saveNotes()
-		currentTranscript = ""
+		try {
+			isGenerating = true
+			const note = await generateNote(currentTranscript)
+			notes = [
+				...notes,
+				{ ...note, id: crypto.randomUUID(), createdAt: new Date() },
+			]
+			await saveNotes()
+			currentTranscript = ""
+		} catch (error) {
+			console.error("Error generating note:", error)
+		} finally {
+			isGenerating = false
+		}
 	}
 }
 
@@ -65,8 +75,14 @@ const generateNote = async (transcript: string): Promise<Note> => {
 		jsonOutput += chunk
 	}
 
-	const parsedOutput = JSON.parse(jsonOutput.replace(/^```|```$/g, ""))
-	return parsedOutput
+	jsonOutput = jsonOutput.replace(/```(?:json)?/g, "").trim()
+	try {
+		const parsedOutput = JSON.parse(jsonOutput)
+		return parsedOutput
+	} catch (error) {
+		console.error("Failed to parse JSON:", jsonOutput)
+		throw new Error("Invalid JSON response from inference")
+	}
 }
 
 const saveNotes = async (): Promise<void> => {
@@ -96,6 +112,11 @@ const deleteNote = (id: string): void => {
 	</div>
 {/if}
 
+<!-- Generating notes indicator -->
+{#if isGenerating}
+	<div class="text-center my-4 text-gray-600">Generating notes...</div>
+{/if}
+
 <section class="grid grid-cols-2 gap-4">
 	{#if notes.length === 0}
 		<!-- How to use NoteAssist -->
@@ -105,9 +126,9 @@ const deleteNote = (id: string): void => {
 			</Card.Header>
 			<Card.Content>
 				<p>1. Click the "Start" button to begin recording.</p>
-				<p>2. Speak clearly into your microphone.</p>
+				<p>2. Watch/ Play the video you want to take notes on. It may be YouTube, Zoom, etc.</p>
 				<p>3. Click "Stop" when you're done.</p>
-				<p>4. Your note will be automatically generated and saved.</p>
+				<p>4. Your note will be automatically generated and saved in NoteAssist.</p>
 			</Card.Content>
 		</Card.Root>
 	{:else}
