@@ -119,7 +119,7 @@ const deleteNote = (id: string): void => {
 	</div>
 {/if}
 
-<section class="grid grid-cols-2 gap-4">
+<section class="grid grid-cols-2 gap-6">
 	{#if notes.length === 0}
 		<!-- How to use NoteAssist -->
 		<Card.Root class="mx-auto">
