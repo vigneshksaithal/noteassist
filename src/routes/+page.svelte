@@ -20,14 +20,14 @@ onMount(async () => {
 const startRecording = async () => {
 	isRecording = true
 	currentTranscript = ""
-	const a = await Highlight.user.getAudio(true)
-	console.log("audio transcript", a)
+	const initialAudio = await Highlight.user.getAudio(true)
+	console.log("Initial audio transcript:", initialAudio)
 	audioInterval = setInterval(async () => {
 		const audio = await Highlight.user.getAudio(true)
 		if (typeof audio === "string" && audio.trim()) {
 			currentTranscript += `${audio} `
 		}
-	}, 1000)
+	}, 1000) as unknown as number
 }
 
 const stopRecording = async () => {
