@@ -1,10 +1,10 @@
 <script lang="ts">
-import { Button } from "$lib/components/ui/button"
-import * as Card from "$lib/components/ui/card"
-import Highlight from "@highlight-ai/app-runtime"
-import { onMount } from "svelte"
+import { Button } from '$lib/components/ui/button'
+import * as Card from '$lib/components/ui/card'
+import Highlight from '@highlight-ai/app-runtime'
+import { onMount } from 'svelte'
 
-let currentTranscript = ""
+let currentTranscript = ''
 let notes: Note[] = []
 let isRecording = false
 let isGenerating = false
@@ -12,7 +12,7 @@ let audioInterval: ReturnType<typeof setInterval> | null = null
 
 onMount(async () => {
 	await Highlight.appStorage.whenHydrated()
-	const storedNotes = Highlight.appStorage.get("notes")
+	const storedNotes = Highlight.appStorage.get('notes')
 	if (storedNotes) {
 		notes = JSON.parse(storedNotes)
 	}
@@ -20,12 +20,12 @@ onMount(async () => {
 
 const startRecording = async () => {
 	isRecording = true
-	currentTranscript = ""
+	currentTranscript = ''
 	const a = await Highlight.user.getAudio(true)
-	console.log("audio transcript", a)
+	console.log('audio transcript', a)
 	audioInterval = setInterval(async () => {
 		const audio = await Highlight.user.getAudio(true)
-		if (typeof audio === "string" && audio.trim()) {
+		if (typeof audio === 'string' && audio.trim()) {
 			currentTranscript += `${audio} `
 		}
 	}, 1000)
@@ -46,9 +46,9 @@ const stopRecording = async (): Promise<void> => {
 				...notes,
 			]
 			await saveNotes()
-			currentTranscript = ""
+			currentTranscript = ''
 		} catch (error) {
-			console.error("Error generating note:", error)
+			console.error('Error generating note:', error)
 		} finally {
 			isGenerating = false
 		}
@@ -64,29 +64,29 @@ const generateNote = async (transcript: string): Promise<Note> => {
 	`
 
 	const MESSAGES = [
-		{ role: "system" as const, content: SYSTEMPROMPT },
-		{ role: "user" as const, content: transcript },
+		{ role: 'system' as const, content: SYSTEMPROMPT },
+		{ role: 'user' as const, content: transcript },
 	]
 
 	const textPrediction = Highlight.inference.getTextPrediction(MESSAGES)
 
-	let jsonOutput = ""
+	let jsonOutput = ''
 	for await (const chunk of textPrediction) {
 		jsonOutput += chunk
 	}
 
-	jsonOutput = jsonOutput.replace(/```(?:json)?/g, "").trim()
+	jsonOutput = jsonOutput.replace(/```(?:json)?/g, '').trim()
 	try {
 		const parsedOutput = JSON.parse(jsonOutput)
 		return parsedOutput
 	} catch (error) {
-		console.error("Failed to parse JSON:", jsonOutput)
-		throw new Error("Invalid JSON response from inference")
+		console.error('Failed to parse JSON:', jsonOutput)
+		throw new Error('Invalid JSON response from inference')
 	}
 }
 
 const saveNotes = async (): Promise<void> => {
-	Highlight.appStorage.set("notes", JSON.stringify(notes))
+	Highlight.appStorage.set('notes', JSON.stringify(notes))
 }
 
 const deleteNote = (id: string): void => {
@@ -98,14 +98,19 @@ const deleteNote = (id: string): void => {
 <!-- Navbar -->
 <div class="flex justify-between items-center pb-4">
 	<h1 class="text-2xl font-bold">NoteAssist</h1>
-	<Button on:click={isRecording ? stopRecording : startRecording} variant={isRecording ? "destructive" : "default"}>
-		{isRecording ? "Stop" : "Start"}
+	<Button
+		on:click={isRecording ? stopRecording : startRecording}
+		variant={isRecording ? 'destructive' : 'default'}
+	>
+		{isRecording ? 'Stop' : 'Start'}
 	</Button>
 </div>
 
 <!-- Recording indicator -->
 {#if isRecording}
-	<div class="flex items-center space-x-2 my-4 p-2 bg-red-100 border border-red-400 rounded">
+	<div
+		class="flex items-center space-x-2 my-4 p-2 bg-red-100 border border-red-400 rounded"
+	>
 		<div class="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
 		<span class="text-red-500 font-semibold">Recording in progress...</span>
 	</div>
@@ -113,7 +118,9 @@ const deleteNote = (id: string): void => {
 
 <!-- Generating notes indicator -->
 {#if isGenerating}
-	<div class="flex items-center space-x-2 my-4 p-2 bg-yellow-100 border border-yellow-400 rounded">
+	<div
+		class="flex items-center space-x-2 my-4 p-2 bg-yellow-100 border border-yellow-400 rounded"
+	>
 		<div class="w-4 h-4 bg-yellow-500 rounded-full animate-spin"></div>
 		<span class="text-yellow-500 font-semibold">Generating notes...</span>
 	</div>
@@ -128,9 +135,14 @@ const deleteNote = (id: string): void => {
 			</Card.Header>
 			<Card.Content>
 				<p>1. Click the "Start" button to begin recording.</p>
-				<p>2. Watch/ Play the video you want to take notes on. It may be YouTube, Zoom, etc.</p>
+				<p>
+					2. Watch/ Play the video you want to take notes on. It may be YouTube,
+					Zoom, etc.
+				</p>
 				<p>3. Click "Stop" when you're done.</p>
-				<p>4. Your note will be automatically generated and saved in NoteAssist.</p>
+				<p>
+					4. Your note will be automatically generated and saved in NoteAssist.
+				</p>
 			</Card.Content>
 		</Card.Root>
 	{:else}
@@ -144,7 +156,9 @@ const deleteNote = (id: string): void => {
 					{@html content}
 				</Card.Content>
 				<Card.Footer class="flex justify-end">
-					<Button variant="destructive" on:click={() => deleteNote(id)}>Delete</Button>
+					<Button variant="destructive" on:click={() => deleteNote(id)}
+						>Delete</Button
+					>
 				</Card.Footer>
 			</Card.Root>
 		{/each}

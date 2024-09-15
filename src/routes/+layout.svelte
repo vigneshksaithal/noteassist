@@ -1,5 +1,6 @@
-<script>import MetaTags from "$lib/MetaTags.svelte"
-import "../app.css"
+<script>
+import MetaTags from '$lib/MetaTags.svelte'
+import '../app.css'
 </script>
 
 <MetaTags />
