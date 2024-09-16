@@ -2,6 +2,11 @@
 import { Button } from '$lib/components/ui/button'
 import * as Card from '$lib/components/ui/card'
 import Highlight from '@highlight-ai/app-runtime'
+import Info from 'lucide-svelte/icons/info'
+import Loader from 'lucide-svelte/icons/loader'
+import Mic from 'lucide-svelte/icons/mic'
+import MicOff from 'lucide-svelte/icons/mic-off'
+import Trash2 from 'lucide-svelte/icons/trash-2'
 import { onMount } from 'svelte'
 
 let currentTranscript = ''
@@ -14,7 +19,10 @@ onMount(async () => {
 	await Highlight.appStorage.whenHydrated()
 	const storedNotes = Highlight.appStorage.get('notes')
 	if (storedNotes) {
-		notes = JSON.parse(storedNotes)
+		notes = JSON.parse(storedNotes, (key, value) => {
+			if (key === 'createdAt') return new Date(value)
+			return value
+		})
 	}
 })
 
@@ -41,10 +49,7 @@ const stopRecording = async (): Promise<void> => {
 		try {
 			isGenerating = true
 			const note = await generateNote(currentTranscript)
-			notes = [
-				{ ...note, id: crypto.randomUUID(), createdAt: new Date() },
-				...notes,
-			]
+			notes = [note, ...notes]
 			await saveNotes()
 			currentTranscript = ''
 		} catch (error) {
@@ -78,10 +83,26 @@ const generateNote = async (transcript: string): Promise<Note> => {
 	jsonOutput = jsonOutput.replace(/```(?:json)?/g, '').trim()
 	try {
 		const parsedOutput = JSON.parse(jsonOutput)
-		return parsedOutput
+		if (
+			typeof parsedOutput.title !== 'string' ||
+			typeof parsedOutput.content !== 'string'
+		) {
+			throw new Error('Invalid JSON structure')
+		}
+		return {
+			id: crypto.randomUUID(),
+			title: parsedOutput.title,
+			content: parsedOutput.content,
+			createdAt: new Date(),
+		}
 	} catch (error) {
 		console.error('Failed to parse JSON:', jsonOutput)
-		throw new Error('Invalid JSON response from inference')
+		return {
+			id: crypto.randomUUID(),
+			title: 'Error: Failed to generate note',
+			content: 'There was an error processing the audio. Please try again.',
+			createdAt: new Date(),
+		}
 	}
 }
 
@@ -101,8 +122,15 @@ const deleteNote = (id: string): void => {
 	<Button
 		on:click={isRecording ? stopRecording : startRecording}
 		variant={isRecording ? 'destructive' : 'default'}
+		class="flex items-center gap-2"
 	>
-		{isRecording ? 'Stop' : 'Start'}
+		{#if isRecording}
+			<MicOff class="w-4 h-4" />
+			Stop
+		{:else}
+			<Mic class="w-4 h-4" />
+			Start
+		{/if}
 	</Button>
 </div>
 
@@ -121,7 +149,7 @@ const deleteNote = (id: string): void => {
 	<div
 		class="flex items-center space-x-2 my-4 p-2 bg-yellow-100 border border-yellow-400 rounded"
 	>
-		<div class="w-4 h-4 bg-yellow-500 rounded-full animate-spin"></div>
+		<Loader class="w-4 h-4 text-yellow-500 animate-spin" />
 		<span class="text-yellow-500 font-semibold">Generating notes...</span>
 	</div>
 {/if}
@@ -131,7 +159,10 @@ const deleteNote = (id: string): void => {
 		<!-- How to use NoteAssist -->
 		<Card.Root class="mx-auto">
 			<Card.Header>
-				<Card.Title class="text-lg font-bold">How to use NoteAssist</Card.Title>
+				<Card.Title class="text-lg font-bold flex items-center gap-2">
+					<Info class="w-5 h-5" />
+					How to use NoteAssist
+				</Card.Title>
 			</Card.Header>
 			<Card.Content>
 				<p>1. Click the "Start" button to begin recording.</p>
@@ -156,9 +187,14 @@ const deleteNote = (id: string): void => {
 					{@html content}
 				</Card.Content>
 				<Card.Footer class="flex justify-end">
-					<Button variant="destructive" on:click={() => deleteNote(id)}
-						>Delete</Button
+					<Button
+						variant="destructive"
+						on:click={() => deleteNote(id)}
+						class="flex items-center gap-2"
 					>
+						<Trash2 class="w-4 h-4" />
+						Delete
+					</Button>
 				</Card.Footer>
 			</Card.Root>
 		{/each}
