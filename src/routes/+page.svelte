@@ -118,7 +118,7 @@ const deleteNote = (id: string): void => {
 
 <!-- Navbar -->
 <div class="flex justify-between items-center pb-4">
-	<h1 class="text-2xl font-bold">NoteAssist</h1>
+	<h1 class="text-2xl font-bold">Notes</h1>
 	<Button
 		on:click={isRecording ? stopRecording : startRecording}
 		variant={isRecording ? 'destructive' : 'default'}
