@@ -10,7 +10,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.0",
+		"@biomejs/biome": "1.9.1",
 		"@sveltejs/adapter-cloudflare": "^4.7.2",
 		"@sveltejs/kit": "^2.5.27",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
@@ -26,6 +26,7 @@
 		"@highlight-ai/app-runtime": "^0.1.0",
 		"bits-ui": "^0.21.13",
 		"clsx": "^2.1.1",
+		"lucide-svelte": "^0.441.0",
 		"pocketbase": "^0.21.5",
 		"tailwind-merge": "^2.5.2",
 		"tailwind-variants": "^0.2.1"
