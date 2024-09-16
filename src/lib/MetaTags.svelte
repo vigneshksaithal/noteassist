@@ -2,11 +2,11 @@
 /**
  * !TODO: Add META data
  */
-export let title = ""
-export let description = ""
-export let keywords = "" // !TODO: Add keywords, separated by commas
-export let url = ""
-export let ogImage = ""
+export let title = ''
+export let description = ''
+export let keywords = '' // !TODO: Add keywords, separated by commas
+export let url = ''
+export let ogImage = ''
 </script>
 
 <svelte:head>
