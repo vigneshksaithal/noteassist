@@ -1,7 +1,9 @@
 <script lang="ts">
 import { Button } from '$lib/components/ui/button'
 import * as Card from '$lib/components/ui/card'
+import * as DropdownMenu from '$lib/components/ui/dropdown-menu'
 import Highlight from '@highlight-ai/app-runtime'
+import { EllipsisVerticalIcon } from 'lucide-svelte'
 import Info from 'lucide-svelte/icons/info'
 import Loader from 'lucide-svelte/icons/loader'
 import Mic from 'lucide-svelte/icons/mic'
@@ -181,21 +183,34 @@ const deleteNote = (id: string): void => {
 		{#each notes as { id, title, content }}
 			<Card.Root>
 				<Card.Header>
-					<Card.Title class="text-lg font-bold">{title}</Card.Title>
+					<div class="flex justify-between items-center">
+						<Card.Title class="text-lg font-bold">{title}</Card.Title>
+						<DropdownMenu.Root>
+							<DropdownMenu.Trigger asChild let:builder>
+								<Button
+									builders={[builder]}
+									variant="ghost"
+									size="icon"
+									class="h-8 w-8 p-0"
+								>
+									<span class="sr-only">Open menu</span>
+									<EllipsisVerticalIcon size="18" />
+								</Button>
+							</DropdownMenu.Trigger>
+							<DropdownMenu.Content align="end">
+								<DropdownMenu.Item on:click={() => deleteNote(id)}>
+									<Trash2 size="16" class="mr-3" />
+									<span>Delete</span>
+								</DropdownMenu.Item>
+							</DropdownMenu.Content>
+						</DropdownMenu.Root>
+					</div>
 				</Card.Header>
-				<Card.Content class="max-h-96 overflow-y-auto">
-					{@html content}
+				<Card.Content>
+					<div class="max-h-96 overflow-y-auto">
+						{@html content}
+					</div>
 				</Card.Content>
-				<Card.Footer class="flex justify-end">
-					<Button
-						variant="destructive"
-						on:click={() => deleteNote(id)}
-						class="flex items-center gap-2"
-					>
-						<Trash2 class="w-4 h-4" />
-						Delete
-					</Button>
-				</Card.Footer>
 			</Card.Root>
 		{/each}
 	{/if}
