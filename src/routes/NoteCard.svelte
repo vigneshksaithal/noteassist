@@ -2,7 +2,7 @@
 import { Button } from '$lib/components/ui/button'
 import * as Card from '$lib/components/ui/card'
 import * as DropdownMenu from '$lib/components/ui/dropdown-menu'
-import { EllipsisVerticalIcon } from 'lucide-svelte'
+import EllipsisVerticalIcon from 'lucide-svelte/icons/ellipsis-vertical'
 import Trash2 from 'lucide-svelte/icons/trash-2'
 
 export let id: string
