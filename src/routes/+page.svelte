@@ -1,14 +1,10 @@
 <script lang="ts">
-import { Button } from '$lib/components/ui/button'
-import * as Card from '$lib/components/ui/card'
-import * as DropdownMenu from '$lib/components/ui/dropdown-menu'
 import Highlight from '@highlight-ai/app-runtime'
-import { EllipsisVerticalIcon } from 'lucide-svelte'
-import Info from 'lucide-svelte/icons/info'
-import Loader from 'lucide-svelte/icons/loader'
-import Trash2 from 'lucide-svelte/icons/trash-2'
 import { onMount } from 'svelte'
+import InstructionCard from './InstructionCard.svelte'
 import Navbar from './Navbar.svelte'
+import NoteCard from './NoteCard.svelte'
+import RecordingStatusIndicator from './RecordingStatusIndicator.svelte'
 
 let currentTranscript = ''
 let notes: Note[] = []
@@ -119,85 +115,14 @@ const deleteNote = (id: string): void => {
 
 <Navbar {isRecording} {startRecording} {stopRecording} />
 
-<!-- Recording indicator -->
-{#if isRecording}
-	<div
-		class="flex items-center space-x-2 my-4 p-2 bg-red-100 border border-red-400 rounded"
-	>
-		<div class="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-		<span class="text-red-500 font-semibold">Recording in progress...</span>
-	</div>
-{/if}
-
-<!-- Generating notes indicator -->
-{#if isGenerating}
-	<div
-		class="flex items-center space-x-2 my-4 p-2 bg-yellow-100 border border-yellow-400 rounded"
-	>
-		<Loader class="w-4 h-4 text-yellow-500 animate-spin" />
-		<span class="text-yellow-500 font-semibold">Generating notes...</span>
-	</div>
-{/if}
+<RecordingStatusIndicator {isRecording} {isGenerating} />
 
 <section class="grid grid-cols-2 gap-6">
 	{#if notes.length === 0}
-		<!-- How to use NoteAssist -->
-		<Card.Root class="mx-auto">
-			<Card.Header>
-				<Card.Title class="text-lg font-bold flex items-center gap-2">
-					<Info class="w-5 h-5" />
-					How to use NoteAssist
-				</Card.Title>
-			</Card.Header>
-			<Card.Content>
-				<p>1. Click the "Start" button to begin recording.</p>
-				<p>
-					2. Watch/ Play the video you want to take notes on. It may be YouTube,
-					Zoom, etc.
-				</p>
-				<p>3. Click "Stop" when you're done.</p>
-				<p>
-					4. Your note will be automatically generated and saved in NoteAssist.
-				</p>
-			</Card.Content>
-		</Card.Root>
+		<InstructionCard />
 	{:else}
-		<!-- Notes -->
 		{#each notes as { id, title, content }}
-			<Card.Root>
-				<Card.Header>
-					<div class="flex justify-between items-center">
-						<Card.Title class="text-lg font-bold">{title}</Card.Title>
-						<DropdownMenu.Root>
-							<DropdownMenu.Trigger asChild let:builder>
-								<Button
-									builders={[builder]}
-									variant="ghost"
-									size="icon"
-									class="h-8 w-8 p-0"
-								>
-									<span class="sr-only">Open menu</span>
-									<EllipsisVerticalIcon size="18" />
-								</Button>
-							</DropdownMenu.Trigger>
-							<DropdownMenu.Content align="end">
-								<DropdownMenu.Item
-									class="flex justify-between"
-									on:click={() => deleteNote(id)}
-								>
-									<span>Delete</span>
-									<Trash2 size="16" />
-								</DropdownMenu.Item>
-							</DropdownMenu.Content>
-						</DropdownMenu.Root>
-					</div>
-				</Card.Header>
-				<Card.Content>
-					<div class="max-h-96 overflow-y-auto">
-						{@html content}
-					</div>
-				</Card.Content>
-			</Card.Root>
+			<NoteCard {id} {title} {content} onDelete={deleteNote} />
 		{/each}
 	{/if}
 </section>
