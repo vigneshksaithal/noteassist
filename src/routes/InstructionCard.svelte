@@ -16,7 +16,7 @@ import InfoIcon from 'lucide-svelte/icons/info'
 			2. Watch/ Play the video you want to take notes on. It may be YouTube,
 			Zoom, etc.
 		</p>
-		<p>7. Click "Stop" when you're done.</p>
-		<p>8. Your note will be automatically generated and saved in NoteAssist.</p>
+		<p>3. Click "Stop" when you're done.</p>
+		<p>4. Your note will be automatically generated and saved in NoteAssist.</p>
 	</Card.Content>
 </Card.Root>
