@@ -10,6 +10,10 @@ import * as Card from '$lib/components/ui/card'
 	</Card.Header>
 	<Card.Content>
 		<ol class="list-decimal list-inside">
+			<li>
+				0. Make sure you have given Highlight and this app the permission to use
+				audio.
+			</li>
 			<li>Click the <b>Start</b> button to begin recording.</li>
 			<li>
 				Watch/Play the video you want to take notes on. It may be YouTube, Zoom,
