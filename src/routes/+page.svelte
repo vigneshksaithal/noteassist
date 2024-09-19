@@ -6,10 +6,9 @@ import Highlight from '@highlight-ai/app-runtime'
 import { EllipsisVerticalIcon } from 'lucide-svelte'
 import Info from 'lucide-svelte/icons/info'
 import Loader from 'lucide-svelte/icons/loader'
-import Mic from 'lucide-svelte/icons/mic'
-import MicOff from 'lucide-svelte/icons/mic-off'
 import Trash2 from 'lucide-svelte/icons/trash-2'
 import { onMount } from 'svelte'
+import Navbar from './Navbar.svelte'
 
 let currentTranscript = ''
 let notes: Note[] = []
@@ -118,23 +117,7 @@ const deleteNote = (id: string): void => {
 }
 </script>
 
-<!-- Navbar -->
-<div class="flex justify-between items-center pb-4">
-	<h1 class="text-2xl font-bold">Notes</h1>
-	<Button
-		on:click={isRecording ? stopRecording : startRecording}
-		variant={isRecording ? 'destructive' : 'default'}
-		class="flex items-center gap-2"
-	>
-		{#if isRecording}
-			<MicOff size="16" />
-			Stop
-		{:else}
-			<Mic size="16" />
-			Start
-		{/if}
-	</Button>
-</div>
+<Navbar {isRecording} {startRecording} {stopRecording} />
 
 <!-- Recording indicator -->
 {#if isRecording}
