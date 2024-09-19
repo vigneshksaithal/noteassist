@@ -117,7 +117,7 @@ const deleteNote = (id: string): void => {
 
 <RecordingStatusIndicator {isRecording} {isGenerating} />
 
-<section class="grid grid-cols-2 gap-6">
+<section class="grid grid-cols-2 gap-8">
 	{#if notes.length === 0}
 		<InstructionCard />
 	{:else}
