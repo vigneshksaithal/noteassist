@@ -127,10 +127,10 @@ const deleteNote = (id: string): void => {
 		class="flex items-center gap-2"
 	>
 		{#if isRecording}
-			<MicOff class="w-4 h-4" />
+			<MicOff size="16" />
 			Stop
 		{:else}
-			<Mic class="w-4 h-4" />
+			<Mic size="16" />
 			Start
 		{/if}
 	</Button>
