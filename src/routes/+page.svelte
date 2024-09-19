@@ -113,16 +113,18 @@ const deleteNote = (id: string): void => {
 }
 </script>
 
-<Navbar {isRecording} {startRecording} {stopRecording} />
+<section class="max-w-xl mx-auto">
+	<Navbar {isRecording} {startRecording} {stopRecording} />
 
-<RecordingStatusIndicator {isRecording} {isGenerating} />
+	<RecordingStatusIndicator {isRecording} {isGenerating} />
 
-<section class="grid grid-cols-2 gap-8">
 	{#if notes.length === 0}
 		<InstructionCard />
 	{:else}
-		{#each notes as { id, title, content }}
-			<NoteCard {id} {title} {content} onDelete={deleteNote} />
-		{/each}
+		<section class="grid grid-cols-1 gap-8">
+			{#each notes as { id, title, content }}
+				<NoteCard {id} {title} {content} onDelete={deleteNote} />
+			{/each}
+		</section>
 	{/if}
 </section>

@@ -18,23 +18,18 @@ const deleteNote = () => {
 <Card.Root>
 	<Card.Header>
 		<div class="flex justify-between items-center">
-			<Card.Title class="text-lg font-bold">{title}</Card.Title>
+			<Card.Title tag="h2">{title}</Card.Title>
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger asChild let:builder>
-					<Button
-						builders={[builder]}
-						variant="ghost"
-						size="icon"
-						class="h-8 w-8 p-0"
-					>
+					<Button builders={[builder]} variant="ghost" size="icon">
 						<span class="sr-only">Open menu</span>
 						<EllipsisVerticalIcon size="18" />
 					</Button>
 				</DropdownMenu.Trigger>
 				<DropdownMenu.Content align="end">
-					<DropdownMenu.Item class="flex justify-between" on:click={deleteNote}>
+					<DropdownMenu.Item on:click={deleteNote}>
+						<Trash2 size="16" class="mr-2" />
 						<span>Delete</span>
-						<Trash2 size="16" />
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>

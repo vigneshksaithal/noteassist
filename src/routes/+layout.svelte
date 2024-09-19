@@ -5,6 +5,6 @@ import '../app.css'
 
 <MetaTags />
 
-<main class="max-w-5xl mx-auto p-4">
+<main class="p-8">
 	<slot />
 </main>
