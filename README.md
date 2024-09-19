@@ -48,16 +48,3 @@ To get started with NoteAssist, follow these steps:
 2. Play the video or lecture you want to take notes on.
 3. Click "Stop" when you're done recording.
 4. Your notes will be automatically generated and displayed.
-
-## Contributing
-
-Contributions are welcome! If you have suggestions or improvements, feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Thanks to the developers of Svelte, SvelteKit, and TailwindCSS for their amazing frameworks.
-- Special thanks to Highlight AI for providing the audio processing capabilities.
