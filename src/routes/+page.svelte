@@ -198,9 +198,12 @@ const deleteNote = (id: string): void => {
 								</Button>
 							</DropdownMenu.Trigger>
 							<DropdownMenu.Content align="end">
-								<DropdownMenu.Item on:click={() => deleteNote(id)}>
-									<Trash2 size="16" class="mr-3" />
+								<DropdownMenu.Item
+									class="flex justify-between"
+									on:click={() => deleteNote(id)}
+								>
 									<span>Delete</span>
+									<Trash2 size="16" />
 								</DropdownMenu.Item>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
