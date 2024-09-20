@@ -8,18 +8,17 @@ export let startRecording: () => void
 export let stopRecording: () => Promise<void>
 </script>
 
-<nav class="flex justify-between items-center pb-4 max-w-xl mx-auto">
+<nav class="flex justify-between items-center mb-8 max-w-xl mx-auto">
 	<h1 class="text-2xl font-bold">Your Notes</h1>
 	<Button
 		on:click={isRecording ? stopRecording : startRecording}
 		variant={isRecording ? 'destructive' : 'default'}
-		class="flex items-center gap-2"
 	>
 		{#if isRecording}
-			<MicOff size="16" />
+			<MicOff size="16" class="mr-2" />
 			Stop
 		{:else}
-			<Mic size="16" />
+			<Mic size="16" class="mr-2" />
 			Start
 		{/if}
 	</Button>
