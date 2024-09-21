@@ -8,17 +8,17 @@ export let isGenerating: boolean
 {#if isRecording || isGenerating}
 	<div
 		class="flex items-center space-x-2 my-4 p-2 rounded w-full"
-		class:bg-red-100={isRecording}
-		class:border-red-400={isRecording}
-		class:bg-yellow-100={isGenerating}
-		class:border-yellow-400={isGenerating}
+		class:bg-danger={isRecording}
+		class:border-destructive={isRecording}
+		class:bg-warning={isGenerating}
+		class:border-warning={isGenerating}
 	>
 		{#if isRecording}
-			<div class="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-			<span class="text-red-500 font-semibold">Recording in progress...</span>
+			<div class="w-4 h-4 rounded-full animate-pulse bg-primary"></div>
+			<span class="text-primary font-semibold">Recording in progress...</span>
 		{:else}
-			<Loader class="w-4 h-4 text-yellow-500 animate-spin" />
-			<span class="text-yellow-500 font-semibold">Generating notes...</span>
+			<Loader class="w-4 h-4 text-primary animate-spin" />
+			<span class="text-primary font-semibold">Generating notes...</span>
 		{/if}
 	</div>
 {/if}
