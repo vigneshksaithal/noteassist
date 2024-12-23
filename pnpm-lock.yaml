@@ -21,8 +21,8 @@ importers:
         specifier: ^0.468.0
         version: 0.468.0(svelte@4.2.19)
       pocketbase:
-        specifier: ^0.23.0
-        version: 0.23.0
+        specifier: ^0.24.0
+        version: 0.24.0
       tailwind-merge:
         specifier: ^2.5.5
         version: 2.5.5
@@ -1312,8 +1312,8 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  pocketbase@0.23.0:
-    resolution: {integrity: sha512-S9b/QSKGXsRyL55m8MoXMucPTpMvpOLlOLTSduraIOzwVt8Epp0j7V53a1qW7VbF2pL7PC579DOruxJBWqBYTg==}
+  pocketbase@0.24.0:
+    resolution: {integrity: sha512-zcmEUsXGRT+AqRHzEMlheglOiQnhYKRxT0ew164kx38/IGsE7MLmlmEaMSkm3tUwiZe5qC3RcA5+SX0lkDUSHA==}
 
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
@@ -2667,7 +2667,7 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  pocketbase@0.23.0: {}
+  pocketbase@0.24.0: {}
 
   postcss-import@15.1.0(postcss@8.4.47):
     dependencies:
