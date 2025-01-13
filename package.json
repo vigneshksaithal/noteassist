@@ -26,7 +26,7 @@
 		"@highlight-ai/app-runtime": "^0.2.2",
 		"bits-ui": "^0.22.0",
 		"clsx": "^2.1.1",
-		"lucide-svelte": "^0.469.0",
+		"lucide-svelte": "^0.471.0",
 		"pocketbase": "^0.25.0",
 		"tailwind-merge": "^2.6.0",
 		"tailwind-variants": "^0.3.0"
