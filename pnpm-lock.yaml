@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@highlight-ai/app-runtime':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.3.3
+        version: 0.3.3
       bits-ui:
         specifier: ^0.22.0
         version: 0.22.0(svelte@4.2.19)
@@ -35,13 +35,13 @@ importers:
         version: 1.9.4
       '@sveltejs/adapter-cloudflare':
         specifier: ^4.8.0
-        version: 4.8.0(@sveltejs/kit@2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(wrangler@3.77.0(@cloudflare/workers-types@4.20241004.0))
+        version: 4.8.0(@sveltejs/kit@2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(wrangler@3.77.0(@cloudflare/workers-types@4.20241004.0))
       '@sveltejs/kit':
         specifier: ^2.16.1
-        version: 2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))
+        version: 2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))
       '@sveltejs/vite-plugin-svelte':
         specifier: ^3.1.2
-        version: 3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))
+        version: 3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.1)
@@ -59,7 +59,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^5.4.12
-        version: 5.4.12(@types/node@22.10.10)
+        version: 5.4.12(@types/node@22.13.0)
 
 packages:
 
@@ -602,8 +602,8 @@ packages:
   '@floating-ui/utils@0.2.8':
     resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
-  '@highlight-ai/app-runtime@0.3.0':
-    resolution: {integrity: sha512-xvx4V+CXekYCvkm8o4Q1nM6vW97alXB0KM+L1RiCqDx/G+ct85DTh2YTJT47lyqZnlKkaKX8/gA11kOjhu07Hw==}
+  '@highlight-ai/app-runtime@0.3.3':
+    resolution: {integrity: sha512-2QhVpRbXFeY2Fn1VuOU47d2mmDfsjm6HoQGufLd/br5Jbq9yV8pwIgni7aV8EaUGAnwYBGSKILQGCMjbAth2AQ==}
 
   '@internationalized/date@3.5.6':
     resolution: {integrity: sha512-jLxQjefH9VI5P9UQuqB6qNKnvFt1Ky1TPIzHGsIlCi7sZZoMR8SdYbBGRvM0y+Jtb+ez4ieBzmiAUcpmPYpyOw==}
@@ -634,58 +634,58 @@ packages:
     peerDependencies:
       svelte: '>=3 <5'
 
-  '@oven/bun-darwin-aarch64@1.2.0':
-    resolution: {integrity: sha512-51gx0Q7MJshZn554VEHj599/TVW+IDcYITWDzxeRyBN96vrbnYT9sGT58tCvN/yVrJBcTH83aHgjsOefM/egrQ==}
+  '@oven/bun-darwin-aarch64@1.2.2':
+    resolution: {integrity: sha512-hCDvi6GGJvsKpfGcU9xdrIhshDtzkYcGiB5wnj0jq/QM3U85qmIe8QUs7tyse9T77aZNjFIXO0GirL+oZ7C+IQ==}
     cpu: [arm64]
     os: [darwin]
 
-  '@oven/bun-darwin-x64-baseline@1.2.0':
-    resolution: {integrity: sha512-ZgtE37T6ogQjp25JZRYbxy4Iziw7+THEnm2Mb+SyjimLSmU10d0fgYsPrT5ZIWfsMh42IXPgUFksG7IY7CmR/A==}
+  '@oven/bun-darwin-x64-baseline@1.2.2':
+    resolution: {integrity: sha512-Q4gC6fB/6BwGc6QltAAlhugCdRRIraxbNYuA0cyuwUlFmMzQIqgO+iSCIaS2PLEwVEwVx8WF++YpU+dVGyNAvg==}
     cpu: [x64]
     os: [darwin]
 
-  '@oven/bun-darwin-x64@1.2.0':
-    resolution: {integrity: sha512-LxbuMT5h5IgBbBpCzUCz9JlAIRcVy9tLJ54s+X6H8qpaDNf4TL+bmZQEog/VZMHdyFVQignSiTI6zPkPnoF+Kw==}
+  '@oven/bun-darwin-x64@1.2.2':
+    resolution: {integrity: sha512-W1MkLpfLMH4+aRoLNksLiODySVUlnKF5dTEmS2VlHxl4Mle+V/40/WSalpZVRPcztJMquwQy2VXox62WUmERXQ==}
     cpu: [x64]
     os: [darwin]
 
-  '@oven/bun-linux-aarch64-musl@1.2.0':
-    resolution: {integrity: sha512-sXfkddLwsOF6x2YfDkmbfuwV5BgaI53G1nh2/cq7iLf1HhdWDhbmB4i9Dw68Gy3tXTrezOOQqZ5+un5OOOXXxg==}
+  '@oven/bun-linux-aarch64-musl@1.2.2':
+    resolution: {integrity: sha512-73srKJaPf3fKUuST4Xd+CO52qCKVMtXUICkTddZ+6itnNNrBDBw4AoayrlNImg7swL8wIZonGGYZHpsvyjmlcg==}
     cpu: [aarch64]
     os: [linux]
 
-  '@oven/bun-linux-aarch64@1.2.0':
-    resolution: {integrity: sha512-1N10z7tQE1CwrSHuhdQFxl1vUd86VKqt1258a++m9EUwZ+uQMYnoevKyDc2TiwJF4yXG1AHc1STz7biQ1q/wNA==}
+  '@oven/bun-linux-aarch64@1.2.2':
+    resolution: {integrity: sha512-VW83fgwFAJyu76xMF2t6W1+VxcLaKJUMH+/k61PdwAulpR6M+aqf8vPQDpIx2vrs4BqR8DQ4eEspyb2/DpcuyQ==}
     cpu: [arm64]
     os: [linux]
 
-  '@oven/bun-linux-x64-baseline@1.2.0':
-    resolution: {integrity: sha512-eXxEbZxUO02EAofgMW1SCiMlGgS0F8NSvF7xTgSAxl8WYYDAR9GVu37DIwGokXBKBuysgdZuBUb7IpWzB+n6IQ==}
+  '@oven/bun-linux-x64-baseline@1.2.2':
+    resolution: {integrity: sha512-YvIilLbII9+sjwnZVumwItoUKSUHJHo9xYw5hcf6aeqDztK1ebGzNIJpE0RgjIT+GYqy504Yz5cK77CGpyVyJw==}
     cpu: [x64]
     os: [linux]
 
-  '@oven/bun-linux-x64-musl-baseline@1.2.0':
-    resolution: {integrity: sha512-/M53/WHnhKjgFxQXljapXMnQvkdZ9EzK9LuWjZ0Kw3WCx9n2v7MS2803vjpiVwUxoDYpq1+wSyXIaEloZQ/R5w==}
+  '@oven/bun-linux-x64-musl-baseline@1.2.2':
+    resolution: {integrity: sha512-K2o2vSHSnGn+ayXUuFJ+7O5L5Mc+uOIydMc5WI9bMhvmEtRqlohrwQR56HPzeFZVPWvmHdxb34VIceEKXmig6Q==}
     cpu: [x64]
     os: [linux]
 
-  '@oven/bun-linux-x64-musl@1.2.0':
-    resolution: {integrity: sha512-pJjVzEiS9HXuWy4LdbmiOLUmU1l2pUAWbbd43OocJRYvZL54cZpE+x0yUyEb38vd+jkHQu0ty8jHMyl+fBNUZA==}
+  '@oven/bun-linux-x64-musl@1.2.2':
+    resolution: {integrity: sha512-6uyUXVNH5jUsvhyzD0uiQNe8VPujuGTsHHDTW1LvRR6Lgr6AVaYjdk45ypbDSauRQsABxDKFQdfQqemkM97sYw==}
     cpu: [x64]
     os: [linux]
 
-  '@oven/bun-linux-x64@1.2.0':
-    resolution: {integrity: sha512-QGXdeY0zkTSMYqIJ1crDF8gvRx0JeRYjd/nmfpxnuxyVNjUUVZHaQKMHvGGptPmkzvhEvCYnWmh2wmCFQmCZBw==}
+  '@oven/bun-linux-x64@1.2.2':
+    resolution: {integrity: sha512-qoEkSdWGvTcX2/Iv3nUcwIcOk72L9Pg6X4ONUXV7luuOHsXktoQK5vuQeCC5FTxCEPjfoKy1GFAFomoU4qZDGQ==}
     cpu: [x64]
     os: [linux]
 
-  '@oven/bun-windows-x64-baseline@1.2.0':
-    resolution: {integrity: sha512-A+U0PGh0twPTbUNwK2BZcFR8fWDumWOAiTReTWTK0wOIcQIy9DCTzKhxBffYNwLhf8BxLkJpoEag7wL1AWiejg==}
+  '@oven/bun-windows-x64-baseline@1.2.2':
+    resolution: {integrity: sha512-bYopMWSCjjjCKjANv7xxAXQoabVUxLZxTw0iC1bGYD9VZGo48nGaJXPn7DsPfeCXGyl+CY3Cy4QIEn+3gNRS2A==}
     cpu: [x64]
     os: [win32]
 
-  '@oven/bun-windows-x64@1.2.0':
-    resolution: {integrity: sha512-inCrG8tQJ9Sz5N8uVoDwoR+QFDLbOcfAkGtjEvnn6djeyDx8PbO8IErhbrpkb+10vtGDFWaOr0XVS7kuSu08Fw==}
+  '@oven/bun-windows-x64@1.2.2':
+    resolution: {integrity: sha512-ZjxyIcS7kQFoGxyNBMZ9mqCxCkg7ZVG9P+/GTzMpUceFF/q88lUwsFsC7YwAe0ZubqcQLRSfdyjbKbC/HuqnFw==}
     cpu: [x64]
     os: [win32]
 
@@ -829,8 +829,8 @@ packages:
   '@types/node-forge@1.3.11':
     resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
 
-  '@types/node@22.10.10':
-    resolution: {integrity: sha512-X47y/mPNzxviAGY5TcYPtYL8JsY3kAq2n8fMmKoRCxq/c4v4pyGNCzM2R6+M5/umG4ZfHuT+sgqDYqWc9rJ6ww==}
+  '@types/node@22.13.0':
+    resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
 
   acorn-walk@8.3.4:
     resolution: {integrity: sha512-ueEepnujpqee2o5aIYnvHU6C0A42MNdsIDeqy5BydrkuC5R1ZuUFnm27EeFJGoEHJQgn3uleRvmTXaJgfXbt4g==}
@@ -889,8 +889,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
-  bun@1.2.0:
-    resolution: {integrity: sha512-QUt9418MMPgylSsfOjGABV0aodlVZmQ6goCn/o0tf6jVKkPFgaMw643iv+Uo5uqEKtECaDCbCmssqofq1nVgvw==}
+  bun@1.2.2:
+    resolution: {integrity: sha512-RUc8uVVTw8WoASUzXaEQJR1s7mnwoHm3P871qBUIqSaoOpuwcU+bSVX151/xoqDwnyv38SjOX7yQ3oO0IeT73g==}
     cpu: [arm64, x64, aarch64]
     os: [darwin, linux, win32]
     hasBin: true
@@ -1725,13 +1725,13 @@ snapshots:
 
   '@floating-ui/utils@0.2.8': {}
 
-  '@highlight-ai/app-runtime@0.3.0':
+  '@highlight-ai/app-runtime@0.3.3':
     dependencies:
       openapi3-ts: 4.4.0
       zod: 3.24.1
       zod-to-json-schema: 3.24.1(zod@3.24.1)
     optionalDependencies:
-      bun: 1.2.0
+      bun: 1.2.2
 
   '@internationalized/date@3.5.6':
     dependencies:
@@ -1769,37 +1769,37 @@ snapshots:
       nanoid: 5.0.7
       svelte: 4.2.19
 
-  '@oven/bun-darwin-aarch64@1.2.0':
+  '@oven/bun-darwin-aarch64@1.2.2':
     optional: true
 
-  '@oven/bun-darwin-x64-baseline@1.2.0':
+  '@oven/bun-darwin-x64-baseline@1.2.2':
     optional: true
 
-  '@oven/bun-darwin-x64@1.2.0':
+  '@oven/bun-darwin-x64@1.2.2':
     optional: true
 
-  '@oven/bun-linux-aarch64-musl@1.2.0':
+  '@oven/bun-linux-aarch64-musl@1.2.2':
     optional: true
 
-  '@oven/bun-linux-aarch64@1.2.0':
+  '@oven/bun-linux-aarch64@1.2.2':
     optional: true
 
-  '@oven/bun-linux-x64-baseline@1.2.0':
+  '@oven/bun-linux-x64-baseline@1.2.2':
     optional: true
 
-  '@oven/bun-linux-x64-musl-baseline@1.2.0':
+  '@oven/bun-linux-x64-musl-baseline@1.2.2':
     optional: true
 
-  '@oven/bun-linux-x64-musl@1.2.0':
+  '@oven/bun-linux-x64-musl@1.2.2':
     optional: true
 
-  '@oven/bun-linux-x64@1.2.0':
+  '@oven/bun-linux-x64@1.2.2':
     optional: true
 
-  '@oven/bun-windows-x64-baseline@1.2.0':
+  '@oven/bun-windows-x64-baseline@1.2.2':
     optional: true
 
-  '@oven/bun-windows-x64@1.2.0':
+  '@oven/bun-windows-x64@1.2.2':
     optional: true
 
   '@polka/url@1.0.0-next.28': {}
@@ -1861,17 +1861,17 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.31.0':
     optional: true
 
-  '@sveltejs/adapter-cloudflare@4.8.0(@sveltejs/kit@2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(wrangler@3.77.0(@cloudflare/workers-types@4.20241004.0))':
+  '@sveltejs/adapter-cloudflare@4.8.0(@sveltejs/kit@2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(wrangler@3.77.0(@cloudflare/workers-types@4.20241004.0))':
     dependencies:
       '@cloudflare/workers-types': 4.20241004.0
-      '@sveltejs/kit': 2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))
+      '@sveltejs/kit': 2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))
       esbuild: 0.24.0
       worktop: 0.8.0-next.18
       wrangler: 3.77.0(@cloudflare/workers-types@4.20241004.0)
 
-  '@sveltejs/kit@2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))':
+  '@sveltejs/kit@2.16.1(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))
+      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
@@ -1884,28 +1884,28 @@ snapshots:
       set-cookie-parser: 2.7.1
       sirv: 3.0.0
       svelte: 4.2.19
-      vite: 5.4.12(@types/node@22.10.10)
+      vite: 5.4.12(@types/node@22.13.0)
 
-  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))':
+  '@sveltejs/vite-plugin-svelte-inspector@2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))
+      '@sveltejs/vite-plugin-svelte': 3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))
       debug: 4.3.7
       svelte: 4.2.19
-      vite: 5.4.12(@types/node@22.10.10)
+      vite: 5.4.12(@types/node@22.13.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))':
+  '@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.10.10))
+      '@sveltejs/vite-plugin-svelte-inspector': 2.1.0(@sveltejs/vite-plugin-svelte@3.1.2(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0)))(svelte@4.2.19)(vite@5.4.12(@types/node@22.13.0))
       debug: 4.3.7
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.11
       svelte: 4.2.19
       svelte-hmr: 0.16.0(svelte@4.2.19)
-      vite: 5.4.12(@types/node@22.10.10)
-      vitefu: 0.2.5(vite@5.4.12(@types/node@22.10.10))
+      vite: 5.4.12(@types/node@22.13.0)
+      vitefu: 0.2.5(vite@5.4.12(@types/node@22.13.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -1919,9 +1919,9 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.13.0
 
-  '@types/node@22.10.10':
+  '@types/node@22.13.0':
     dependencies:
       undici-types: 6.20.0
 
@@ -1978,19 +1978,19 @@ snapshots:
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.0)
 
-  bun@1.2.0:
+  bun@1.2.2:
     optionalDependencies:
-      '@oven/bun-darwin-aarch64': 1.2.0
-      '@oven/bun-darwin-x64': 1.2.0
-      '@oven/bun-darwin-x64-baseline': 1.2.0
-      '@oven/bun-linux-aarch64': 1.2.0
-      '@oven/bun-linux-aarch64-musl': 1.2.0
-      '@oven/bun-linux-x64': 1.2.0
-      '@oven/bun-linux-x64-baseline': 1.2.0
-      '@oven/bun-linux-x64-musl': 1.2.0
-      '@oven/bun-linux-x64-musl-baseline': 1.2.0
-      '@oven/bun-windows-x64': 1.2.0
-      '@oven/bun-windows-x64-baseline': 1.2.0
+      '@oven/bun-darwin-aarch64': 1.2.2
+      '@oven/bun-darwin-x64': 1.2.2
+      '@oven/bun-darwin-x64-baseline': 1.2.2
+      '@oven/bun-linux-aarch64': 1.2.2
+      '@oven/bun-linux-aarch64-musl': 1.2.2
+      '@oven/bun-linux-x64': 1.2.2
+      '@oven/bun-linux-x64-baseline': 1.2.2
+      '@oven/bun-linux-x64-musl': 1.2.2
+      '@oven/bun-linux-x64-musl-baseline': 1.2.2
+      '@oven/bun-windows-x64': 1.2.2
+      '@oven/bun-windows-x64-baseline': 1.2.2
     optional: true
 
   caniuse-lite@1.0.30001667: {}
@@ -2470,18 +2470,18 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.0
 
-  vite@5.4.12(@types/node@22.10.10):
+  vite@5.4.12(@types/node@22.13.0):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.1
       rollup: 4.31.0
     optionalDependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.13.0
       fsevents: 2.3.3
 
-  vitefu@0.2.5(vite@5.4.12(@types/node@22.10.10)):
+  vitefu@0.2.5(vite@5.4.12(@types/node@22.13.0)):
     optionalDependencies:
-      vite: 5.4.12(@types/node@22.10.10)
+      vite: 5.4.12(@types/node@22.13.0)
 
   workerd@1.20240909.0:
     optionalDependencies:

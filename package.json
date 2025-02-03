@@ -23,7 +23,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@highlight-ai/app-runtime": "^0.3.0",
+		"@highlight-ai/app-runtime": "^0.3.3",
 		"bits-ui": "^0.22.0",
 		"clsx": "^2.1.1",
 		"lucide-svelte": "^0.474.0",
